@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naina's Playbook 🌈</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#fff9f0;
+  --card-bg:#ffffff;
+  --pink:#ff6eb4;
+  --yellow:#ffcc00;
+  --teal:#00c9a7;
+  --purple:#a855f7;
+  --orange:#ff7c3a;
+  --blue:#3b9eff;
+  --red:#ff4d6d;
+  --green:#22c55e;
+  --navy:#1e1b4b;
+}
+body{font-family:'Nunito',sans-serif;background:var(--bg);min-height:100vh;overflow-x:hidden;}
+
+/* ── BUBBLES BG ── */
+.bubbles-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.bubble{position:absolute;border-radius:50%;opacity:0.12;animation:rise linear infinite;}
+@keyframes rise{0%{transform:translateY(110vh) scale(0.5);}100%{transform:translateY(-20vh) scale(1.2);}}
+
+/* ── HERO ── */
+.hero{
+  position:relative;z-index:1;
+  background:linear-gradient(135deg,#667eea 0%,#764ba2 30%,#f093fb 60%,#f5576c 100%);
+  padding:50px 24px 80px;
+  text-align:center;
+  clip-path:ellipse(100% 88% at 50% 12%);
+  overflow:hidden;
+}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Ccircle cx='30' cy='30' r='10'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
+.hero-tag{
+  display:inline-block;background:rgba(255,255,255,0.2);backdrop-filter:blur(10px);
+  border:1.5px solid rgba(255,255,255,0.4);border-radius:50px;
+  padding:7px 22px;font-size:13px;font-weight:800;color:#fff;
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;
+  animation:popIn 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+.greeting{
+  font-size:clamp(1.5rem,4vw,2.5rem);font-weight:900;color:#fff;
+  margin-bottom:8px;animation:popIn 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.1s both;
+}
+.greeting .wave{display:inline-block;animation:wave 2s ease-in-out infinite;}
+@keyframes wave{0%,100%{transform:rotate(0);}30%{transform:rotate(20deg);}60%{transform:rotate(-10deg);}}
+.hero-title{
+  font-family:'Fredoka One',cursive;
+  font-size:clamp(2.8rem,7vw,5.5rem);
+  color:#fff;line-height:1;margin-bottom:16px;
+  text-shadow:4px 4px 0px rgba(0,0,0,0.15);
+  animation:popIn 0.8s cubic-bezier(0.34,1.56,0.64,1) 0.2s both;
+}
+.hero-title .line2{color:#fff700;-webkit-text-stroke:2px rgba(0,0,0,0.1);}
+.hero-sub{
+  font-size:1.1rem;color:rgba(255,255,255,0.88);max-width:560px;margin:0 auto 32px;line-height:1.7;
+  animation:popIn 0.9s cubic-bezier(0.34,1.56,0.64,1) 0.3s both;
+}
+.hero-pills{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:10px;
+  animation:popIn 1s cubic-bezier(0.34,1.56,0.64,1) 0.4s both;
+}
+.pill{
+  background:rgba(255,255,255,0.18);backdrop-filter:blur(8px);
+  border:1.5px solid rgba(255,255,255,0.35);border-radius:50px;
+  padding:10px 20px;font-weight:800;font-size:0.9rem;color:#fff;
+}
+.pill strong{font-size:1.3rem;margin-right:4px;}
+@keyframes popIn{from{opacity:0;transform:scale(0.7) translateY(20px);}to{opacity:1;transform:scale(1) translateY(0);}}
+
+/* ── FILTER SECTION ── */
+.filter-wrap{
+  position:relative;z-index:2;
+  max-width:1200px;margin:-50px auto 40px;
+  padding:0 20px;
+}
+.filter-box{
+  background:#fff;border-radius:28px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.12);
+  padding:28px 24px;
+}
+.filter-title{
+  font-family:'Fredoka One',cursive;font-size:1.1rem;color:#999;
+  text-align:center;margin-bottom:18px;letter-spacing:1px;
+}
+.tabs-grid{
+  display:flex;flex-wrap:wrap;gap:10px;justify-content:center;
+}
+.tab{
+  display:flex;align-items:center;gap:8px;
+  padding:12px 20px;border-radius:50px;border:2.5px solid transparent;
+  font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:800;
+  cursor:pointer;transition:all 0.25s cubic-bezier(0.34,1.56,0.64,1);
+  background:#f5f0ff;color:#888;
+}
+.tab:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 8px 24px rgba(0,0,0,0.12);}
+.tab.active{color:#fff;border-color:transparent;transform:translateY(-3px) scale(1.04);box-shadow:0 10px 30px rgba(0,0,0,0.2);}
+.tab-icon{font-size:1.2rem;}
+.tab[data-cat="all"].active{background:linear-gradient(135deg,#667eea,#764ba2);}
+.tab[data-cat="sensory"].active{background:linear-gradient(135deg,#00c9a7,#00a8e8);}
+.tab[data-cat="creative"].active{background:linear-gradient(135deg,#f093fb,#f5576c);}
+.tab[data-cat="motor"].active{background:linear-gradient(135deg,#ff7c3a,#ffcc00);}
+.tab[data-cat="cognitive"].active{background:linear-gradient(135deg,#3b9eff,#667eea);}
+.tab[data-cat="language"].active{background:linear-gradient(135deg,#a855f7,#ec4899);}
+.tab[data-cat="nature"].active{background:linear-gradient(135deg,#22c55e,#00c9a7);}
+.tab[data-cat="social"].active{background:linear-gradient(135deg,#ff4d6d,#ff7c3a);}
+.tab[data-cat="eylf"].active{background:linear-gradient(135deg,#ffcc00,#ff7c3a);}
+
+/* EYLF info bar */
+.eylf-bar{
+  display:none;max-width:1200px;margin:0 auto 30px;padding:0 20px;
+}
+.eylf-bar.show{display:block;}
+.eylf-inner{
+  background:linear-gradient(135deg,#fff9e6,#fff3cd);
+  border:2px solid #ffcc00;border-radius:20px;padding:20px 24px;
+}
+.eylf-inner h3{font-family:'Fredoka One',cursive;color:#c47d00;font-size:1.3rem;margin-bottom:12px;}
+.eylf-outcomes{display:flex;flex-wrap:wrap;gap:10px;}
+.eylf-outcome{
+  background:#fff;border:2px solid #ffd96a;border-radius:12px;padding:10px 16px;
+  font-size:0.85rem;font-weight:700;color:#7a5000;
+}
+.eylf-outcome strong{display:block;font-size:1rem;color:#c47d00;}
+
+/* ── COUNTER ── */
+.activity-counter{
+  text-align:center;max-width:1200px;margin:0 auto 24px;padding:0 20px;
+  font-family:'Fredoka One',cursive;font-size:1.2rem;color:#999;
+}
+.activity-counter span{color:var(--purple);font-size:1.8rem;}
+
+/* ── GRID ── */
+.grid-wrap{max-width:1200px;margin:0 auto;padding:0 20px 80px;}
+.activities-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+  gap:24px;
+}
+
+/* ── CARD ── */
+.act-card{
+  height:440px;perspective:1400px;cursor:pointer;
+  transition:transform 0.3s;
+}
+.act-card:not(.flipped):hover{transform:translateY(-10px) scale(1.01);}
+.card-inner{
+  width:100%;height:100%;position:relative;
+  transform-style:preserve-3d;
+  transition:transform 0.7s cubic-bezier(0.23,1,0.32,1);
+}
+.act-card.flipped .card-inner{transform:rotateY(180deg);}
+.card-face{
+  position:absolute;inset:0;border-radius:28px;
+  backface-visibility:hidden;overflow:hidden;
+}
+
+/* FRONT */
+.card-front{
+  display:flex;flex-direction:column;
+  box-shadow:0 10px 40px rgba(0,0,0,0.1);
+}
+.card-top{
+  padding:24px 24px 16px;flex:0 0 auto;position:relative;overflow:hidden;
+}
+.card-top::after{
+  content:'';position:absolute;right:-30px;bottom:-30px;
+  width:120px;height:120px;border-radius:50%;
+  background:rgba(255,255,255,0.15);
+}
+.card-emoji-wrap{
+  width:64px;height:64px;border-radius:20px;
+  background:rgba(255,255,255,0.25);backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.2rem;margin-bottom:12px;
+  box-shadow:0 4px 16px rgba(0,0,0,0.1);
+  animation:float 4s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+.card-cat-chip{
+  display:inline-block;background:rgba(255,255,255,0.28);
+  border:1.5px solid rgba(255,255,255,0.5);border-radius:50px;
+  padding:3px 12px;font-size:0.72rem;font-weight:800;color:#fff;
+  letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;
+}
+.card-name{
+  font-family:'Fredoka One',cursive;font-size:1.55rem;
+  color:#fff;line-height:1.15;text-shadow:0 2px 8px rgba(0,0,0,0.15);
+}
+.card-age-tag{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(0,0,0,0.15);border-radius:50px;
+  padding:3px 12px;font-size:0.78rem;color:rgba(255,255,255,0.9);
+  font-weight:700;margin-top:8px;
+}
+.card-body{
+  background:#fff;flex:1;padding:18px 22px 16px;
+  display:flex;flex-direction:column;
+}
+.card-rationale{
+  font-size:0.87rem;color:#555;line-height:1.65;flex:1;
+}
+.card-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:14px;padding-top:12px;border-top:2px dashed #f0e6ff;
+}
+.mat-badge{
+  display:flex;align-items:center;gap:6px;font-size:0.78rem;
+  font-weight:700;color:#aaa;
+}
+.flip-btn{
+  display:flex;align-items:center;gap:6px;
+  background:var(--purple);color:#fff;border:none;
+  border-radius:50px;padding:8px 16px;font-size:0.8rem;font-weight:800;
+  cursor:pointer;font-family:'Nunito',sans-serif;
+  animation:pulse 2.5s ease-in-out infinite;
+  transition:transform 0.2s;
+}
+.flip-btn:hover{transform:scale(1.06);}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(168,85,247,0.5);}50%{box-shadow:0 0 0 8px rgba(168,85,247,0);}}
+
+/* BACK */
+.card-back{
+  transform:rotateY(180deg);
+  background:#1e1b4b;
+  display:flex;flex-direction:column;
+  box-shadow:0 10px 40px rgba(0,0,0,0.2);
+}
+.back-header{
+  padding:18px 20px 0;flex-shrink:0;
+}
+.back-title{
+  font-family:'Fredoka One',cursive;font-size:1.2rem;color:#fff;margin-bottom:12px;
+}
+.back-tabs-row{
+  display:flex;gap:0;border-bottom:2px solid rgba(255,255,255,0.08);
+}
+.btab{
+  flex:1;padding:10px 6px;text-align:center;background:none;
+  border:none;border-bottom:3px solid transparent;margin-bottom:-2px;
+  font-family:'Nunito',sans-serif;font-size:0.8rem;font-weight:800;
+  color:rgba(255,255,255,0.35);cursor:pointer;letter-spacing:0.5px;
+  text-transform:uppercase;transition:all 0.2s;
+}
+.btab.active{color:#fff700;border-bottom-color:#fff700;}
+.back-scroll{flex:1;overflow-y:auto;padding:16px 18px;}
+.back-scroll::-webkit-scrollbar{width:3px;}
+.back-scroll::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.2);border-radius:3px;}
+.panel{display:none;}
+.panel.active{display:block;}
+.panel-heading{
+  font-size:0.72rem;text-transform:uppercase;letter-spacing:2px;
+  color:rgba(255,255,255,0.35);margin-bottom:10px;
+}
+.mat-item{
+  display:flex;align-items:center;gap:10px;
+  font-size:0.85rem;color:rgba(255,255,255,0.82);
+  padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.mat-item::before{content:'✦';color:#fff700;font-size:0.65rem;flex-shrink:0;}
+.step-item{
+  display:flex;gap:12px;
+  font-size:0.85rem;color:rgba(255,255,255,0.82);
+  padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.06);line-height:1.55;
+}
+.step-num{
+  min-width:26px;height:26px;border-radius:50%;
+  background:linear-gradient(135deg,#a855f7,#ec4899);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.75rem;font-weight:900;color:#fff;flex-shrink:0;margin-top:1px;
+}
+.obs-item{
+  display:flex;gap:10px;align-items:flex-start;
+  font-size:0.85rem;color:rgba(255,255,255,0.82);
+  padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.06);line-height:1.55;
+}
+.obs-eye{font-size:0.85rem;margin-top:1px;flex-shrink:0;}
+.eylf-tag{
+  display:inline-block;background:rgba(255,204,0,0.15);border:1px solid rgba(255,204,0,0.3);
+  border-radius:8px;padding:5px 10px;font-size:0.78rem;color:#ffcc00;
+  font-weight:700;margin:3px;
+}
+.back-close{
+  flex-shrink:0;padding:11px;background:rgba(255,255,255,0.05);
+  border:none;border-top:1px solid rgba(255,255,255,0.08);
+  color:rgba(255,255,255,0.5);font-size:0.82rem;cursor:pointer;
+  font-family:'Nunito',sans-serif;font-weight:700;transition:background 0.2s;
+}
+.back-close:hover{background:rgba(255,255,255,0.1);color:#fff;}
+
+/* Gradient themes per category */
+.g-sensory .card-top{background:linear-gradient(135deg,#00c9a7,#00a8e8);}
+.g-creative .card-top{background:linear-gradient(135deg,#f093fb,#f5576c);}
+.g-motor .card-top{background:linear-gradient(135deg,#ff7c3a,#ffcc00);}
+.g-cognitive .card-top{background:linear-gradient(135deg,#3b9eff,#667eea);}
+.g-language .card-top{background:linear-gradient(135deg,#a855f7,#ec4899);}
+.g-nature .card-top{background:linear-gradient(135deg,#22c55e,#00c9a7);}
+.g-social .card-top{background:linear-gradient(135deg,#ff4d6d,#ff7c3a);}
+
+/* hidden */
+.act-card.hidden{display:none;}
+
+/* no results */
+.no-res{display:none;text-align:center;padding:60px;color:#ccc;font-family:'Fredoka One',cursive;font-size:1.4rem;grid-column:1/-1;}
+.no-res.show{display:block;}
+
+/* ── EYLF PAGE ── */
+#eylf-page{display:none;max-width:1200px;margin:0 auto;padding:0 20px 80px;}
+#eylf-page.show{display:block;}
+.eylf-page-title{font-family:'Fredoka One',cursive;font-size:2rem;color:#7a5000;text-align:center;margin:30px 0 20px;}
+.eylf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;}
+.eylf-card{
+  background:#fff;border-radius:24px;padding:24px;
+  box-shadow:0 8px 30px rgba(0,0,0,0.08);
+  border-top:6px solid;
+}
+.eylf-card:nth-child(1){border-color:#f5576c;}
+.eylf-card:nth-child(2){border-color:#3b9eff;}
+.eylf-card:nth-child(3){border-color:#22c55e;}
+.eylf-card:nth-child(4){border-color:#a855f7;}
+.eylf-card:nth-child(5){border-color:#ffcc00;}
+.eylf-card h3{font-family:'Fredoka One',cursive;font-size:1.2rem;margin-bottom:8px;}
+.eylf-card p{font-size:0.85rem;color:#666;line-height:1.65;}
+.eylf-card .outcome-num{font-size:2.5rem;font-family:'Fredoka One',cursive;opacity:0.15;float:right;margin:-8px 0 0 0;}
+.activity-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+.atag{background:#f0e6ff;color:#7c3aed;border-radius:8px;padding:3px 10px;font-size:0.75rem;font-weight:700;}
+
+/* ── DEV PAGE ── */
+#dev-page{display:none;max-width:1200px;margin:0 auto;padding:0 20px 80px;}
+#dev-page.show{display:block;}
+.dev-page-title{font-family:'Fredoka One',cursive;font-size:2rem;color:var(--navy);text-align:center;margin:30px 0 20px;}
+.dev-milestones{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;}
+.dev-card{background:#fff;border-radius:24px;padding:24px;box-shadow:0 8px 30px rgba(0,0,0,0.08);}
+.dev-card-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.dev-icon{font-size:2.2rem;}
+.dev-card h3{font-family:'Fredoka One',cursive;font-size:1.15rem;}
+.dev-card ul{list-style:none;padding:0;}
+.dev-card ul li{font-size:0.83rem;color:#555;padding:5px 0;border-bottom:1px dashed #eee;display:flex;gap:8px;}
+.dev-card ul li::before{content:'→';color:var(--teal);flex-shrink:0;}
+.dev-badge{display:inline-block;border-radius:50px;padding:4px 14px;font-size:0.78rem;font-weight:800;margin-bottom:10px;}
+
+/* footer */
+footer{background:var(--navy);color:rgba(255,255,255,0.5);text-align:center;padding:30px;font-size:0.85rem;}
+footer .heart{color:var(--pink);display:inline-block;animation:hb 1.2s ease-in-out infinite;}
+@keyframes hb{0%,100%{transform:scale(1);}50%{transform:scale(1.4);}}
+</style>
+</head>
+<body>
+
+<!-- Bubbles -->
+<div class="bubbles-bg" id="bubbles"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">🇦🇺 EYLF Aligned · Preschool</div>
+  <div class="greeting">Hi Naina! <span class="wave">👋</span> You're a <span style="color:#fff700">😎</span></div>
+  <h1 class="hero-title">
+    Early Years<br>
+    <span class="line2">Activity Playbook!</span>
+  </h1>
+  <p class="hero-sub">Tap <strong>any card</strong> to flip it and see full materials, procedure & observation notes. Use the filters below to explore by area!</p>
+  <div class="hero-pills">
+    <div class="pill"><strong>30+</strong> Activities</div>
+    <div class="pill"><strong>7</strong> Dev Areas</div>
+    <div class="pill"><strong>23–30</strong> Months</div>
+    <div class="pill"><strong>EYLF</strong> Aligned</div>
+  </div>
+</section>
+
+<!-- FILTER BOX -->
+<div class="filter-wrap">
+  <div class="filter-box">
+    <div class="filter-title">✨ FILTER BY AREA ✨</div>
+    <div class="tabs-grid">
+      <button class="tab active" data-cat="all" onclick="switchView('activities');filter('all',this)"><span class="tab-icon">🌈</span>All Activities</button>
+      <button class="tab" data-cat="sensory" onclick="switchView('activities');filter('sensory',this)"><span class="tab-icon">🌊</span>Sensory</button>
+      <button class="tab" data-cat="creative" onclick="switchView('activities');filter('creative',this)"><span class="tab-icon">🎨</span>Creative Arts</button>
+      <button class="tab" data-cat="motor" onclick="switchView('activities');filter('motor',this)"><span class="tab-icon">🏃</span>Motor Skills</button>
+      <button class="tab" data-cat="cognitive" onclick="switchView('activities');filter('cognitive',this)"><span class="tab-icon">🧠</span>Cognitive</button>
+      <button class="tab" data-cat="language" onclick="switchView('activities');filter('language',this)"><span class="tab-icon">💬</span>Language</button>
+      <button class="tab" data-cat="nature" onclick="switchView('activities');filter('nature',this)"><span class="tab-icon">🌿</span>Nature</button>
+      <button class="tab" data-cat="social" onclick="switchView('activities');filter('social',this)"><span class="tab-icon">🤝</span>Social &amp; Emotional</button>
+      <button class="tab" data-cat="eylf" onclick="switchView('eylf')"><span class="tab-icon">📋</span>EYLF Outcomes</button>
+      <button class="tab" data-cat="dev" onclick="switchView('dev')"><span class="tab-icon">📊</span>Dev Milestones</button>
+    </div>
+  </div>
+</div>
+
+<!-- COUNTER -->
+<div class="activity-counter" id="counter"><span id="countNum">30</span> activities shown</div>
+
+<!-- ACTIVITIES VIEW -->
+<div id="activities-view">
+  <div class="grid-wrap">
+    <div class="activities-grid" id="grid">
+      <div class="no-res" id="noRes">No activities here yet 🌱</div>
+    </div>
+  </div>
+</div>
+
+<!-- EYLF VIEW -->
+<div id="eylf-page">
+  <h2 class="eylf-page-title">📋 EYLF Learning Outcomes</h2>
+  <div class="eylf-grid">
+    <div class="eylf-card">
+      <span class="outcome-num">1</span>
+      <h3>🌟 Identity</h3>
+      <p>Children have a strong sense of identity. They feel safe, secure, and supported while exploring who they are.</p>
+      <div class="activity-tags">
+        <span class="atag">Mirror Play</span><span class="atag">Role Play</span><span class="atag">Emotion Cards</span><span class="atag">Self Portraits</span>
+      </div>
+    </div>
+    <div class="eylf-card">
+      <span class="outcome-num">2</span>
+      <h3>🤝 Community</h3>
+      <p>Children are connected with and contribute to their world. They explore relationships and feel a sense of belonging.</p>
+      <div class="activity-tags">
+        <span class="atag">Washing Socks</span><span class="atag">Group Music</span><span class="atag">Story Sharing</span><span class="atag">Gardening</span>
+      </div>
+    </div>
+    <div class="eylf-card">
+      <span class="outcome-num">3</span>
+      <h3>💪 Wellbeing</h3>
+      <p>Children have a strong sense of wellbeing. They take increasing responsibility for their own health and physical wellbeing.</p>
+      <div class="activity-tags">
+        <span class="atag">Ball Play</span><span class="atag">Obstacle Course</span><span class="atag">Dance</span><span class="atag">Mud Kitchen</span>
+      </div>
+    </div>
+    <div class="eylf-card">
+      <span class="outcome-num">4</span>
+      <h3>🧠 Learning</h3>
+      <p>Children are confident and involved learners. They develop dispositions for learning such as curiosity, cooperation and creativity.</p>
+      <div class="activity-tags">
+        <span class="atag">Shape Puzzles</span><span class="atag">Colour Sorting</span><span class="atag">Water Play</span><span class="atag">Playdough</span>
+      </div>
+    </div>
+    <div class="eylf-card">
+      <span class="outcome-num">5</span>
+      <h3>💬 Communication</h3>
+      <p>Children are effective communicators. They interact verbally and non-verbally with others for a range of purposes.</p>
+      <div class="activity-tags">
+        <span class="atag">Story Time</span><span class="atag">Finger Painting</span><span class="atag">Puppets</span><span class="atag">Singing</span>
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:30px;">
+    <p style="color:#888;font-size:0.9rem;line-height:1.8;">The EYLF (Early Years Learning Framework) guides early childhood educators in Australia.<br>All activities in this playbook support one or more of these 5 learning outcomes.</p>
+  </div>
+</div>
+
+<!-- DEV MILESTONES VIEW -->
+<div id="dev-page">
+  <h2 class="dev-page-title">📊 Developmental Milestones (23–30 Months)</h2>
+  <div class="dev-milestones">
+    <div class="dev-card">
+      <div class="dev-card-header">
+        <span class="dev-icon">🖐</span>
+        <div><span class="dev-badge" style="background:#fde8ff;color:#a855f7;">Fine Motor</span><h3>Hand Skills</h3></div>
+      </div>
+      <ul>
+        <li>Turns pages one at a time</li>
+        <li>Builds tower of 6–7 blocks</li>
+        <li>Scribbles in circles and lines</li>
+        <li>Turns door handles and lids</li>
+        <li>Strings 4 large beads</li>
+        <li>Snips paper with scissors (with help)</li>
+      </ul>
+    </div>
+    <div class="dev-card">
+      <div class="dev-card-header">
+        <span class="dev-icon">🏃</span>
+        <div><span class="dev-badge" style="background:#fff3cd;color:#c47d00;">Gross Motor</span><h3>Body Movement</h3></div>
+      </div>
+      <ul>
+        <li>Runs with more control</li>
+        <li>Kicks a stationary ball</li>
+        <li>Jumps with both feet</li>
+        <li>Walks up/down stairs with support</li>
+        <li>Climbs on and off furniture</li>
+        <li>Stands briefly on one foot</li>
+      </ul>
+    </div>
+    <div class="dev-card">
+      <div class="dev-card-header">
+        <span class="dev-icon">💬</span>
+        <div><span class="dev-badge" style="background:#ede9fe;color:#7c3aed;">Language</span><h3>Communication</h3></div>
+      </div>
+      <ul>
+        <li>Uses 50+ words</li>
+        <li>Combines 2–3 words in phrases</li>
+        <li>Asks "what" and "where" questions</li>
+        <li>Follows 2-step instructions</li>
+        <li>Names familiar objects and people</li>
+        <li>Strangers understand ~50% of speech</li>
+      </ul>
+    </div>
+    <div class="dev-card">
+      <div class="dev-card-header">
+        <span class="dev-icon">🧠</span>
+        <div><span class="dev-badge" style="background:#e0f2fe;color:#0369a1;">Cognitive</span><h3>Thinking</h3></div>
+      </div>
+      <ul>
+        <li>Matches shapes and colours</li>
+        <li>Pretend play becoming complex</li>
+        <li>Sorts objects into categories</li>
+        <li>Understanding cause and effect</li>
+        <li>Counts 2–3 objects</li>
+        <li>Completes 3–5 piece puzzles</li>
+      </ul>
+    </div>
+    <div class="dev-card">
+      <div class="dev-card-header">
+        <span class="dev-icon">❤️</span>
+        <div><span class="dev-badge" style="background:#fce7f3;color:#be185d;">Social-Emotional</span><h3>Feelings</h3></div>
+      </div>
+      <ul>
+        <li>Shows empathy toward others</li>
+        <li>Parallel play evolving to cooperative</li>
+        <li>Expresses a wide range of emotions</li>
+        <li>Strong sense of ownership ("mine!")</li>
+        <li>Seeks adult reassurance</li>
+        <li>Beginning to take turns</li>
+      </ul>
+    </div>
+    <div class="dev-card">
+      <div class="dev-card-header">
+        <span class="dev-icon">🌊</span>
+        <div><span class="dev-badge" style="background:#d1fae5;color:#065f46;">Sensory</span><h3>Processing</h3></div>
+      </div>
+      <ul>
+        <li>Explores textures more confidently</li>
+        <li>Tolerates messy play longer</li>
+        <li>Responds to rhythm and music</li>
+        <li>Identifies basic tastes and smells</li>
+        <li>Enjoys water and sand exploration</li>
+        <li>Developing proprioceptive awareness</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer>Made with <span class="heart">♥</span> for Naina's little learners · Early Childhood Education · Australia 🇦🇺</footer>
+
+<script>
+// ── BUBBLES ──
+const bc = document.getElementById('bubbles');
+const bColors = ['#ff6eb4','#ffcc00','#00c9a7','#a855f7','#3b9eff','#ff7c3a'];
+for(let i=0;i<20;i++){
+  const b = document.createElement('div');
+  b.className='bubble';
+  const sz = 30+Math.random()*120;
+  b.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;background:${bColors[i%bColors.length]};animation-duration:${8+Math.random()*14}s;animation-delay:${-Math.random()*20}s;`;
+  bc.appendChild(b);
+}
+
+// ── ACTIVITIES DATA ──
+const activities=[
+  // SENSORY
+  {emoji:'💧',cat:'sensory',title:'Water Pouring Play',age:'23–30m',
+   rationale:'Water play builds concentration, hand-eye coordination, and cause-and-effect understanding. The calming sensory input also supports emotional regulation in toddlers.',
+   mats:['Large shallow tub or water table','Various sized cups & containers','Funnels, ladles, sponges','Waterproof aprons','Towels','Food colouring (optional)'],
+   steps:['Fill tub with 5–8 cm of water at room temperature.','Place different sized cups, jugs, and funnels around the tub.','Invite children: "Let\'s see what happens when we pour!"','Model pouring slowly from one cup to another.','Encourage children to fill, pour, and empty freely.','Ask open questions: "Which cup holds more?"','Add food colouring drops — observe the mixing.','Allow 20 minutes of free exploration.'],
+   obs:['Hand dominance and grip strength','Whether child pours carefully or dumps impulsively','Cause-and-effect understanding','Vocabulary: full, empty, pour, splash','Sustained attention span','Problem-solving when containers overflow'],
+   eylf:['Outcome 3','Outcome 4']},
+
+  {emoji:'🟡',cat:'sensory',title:'Playdough Squish & Sculpt',age:'23–30m',
+   rationale:'Playdough strengthens hand and finger muscles essential for future writing, while the sensory input helps develop tactile awareness and imaginative thinking.',
+   mats:['Playdough (multiple colours)','Rolling pins (child-sized)','Cookie cutters','Plastic safe knives','Small objects for pressing (shells, buttons)'],
+   steps:['Give each child a fist-sized ball of playdough.','Demonstrate squishing, rolling, and poking.','Encourage: "Can you make it flat? Roll a snake?"','Introduce tools one at a time.','Let children press objects into the dough.','Narrate what you see: "You\'re rolling! That\'s getting flatter!"','Ask: "What are you making? Show me!"','Allow 20 minutes of open-ended play.'],
+   obs:['Pincer grasp development','Whether child uses two hands together','Imaginative narration during play','Persistence when playdough is stiff','Tool use — purposeful vs exploratory','Social interactions with peers'],
+   eylf:['Outcome 3','Outcome 4']},
+
+  {emoji:'🌾',cat:'sensory',title:'Sensory Rice Bin',age:'23–30m',
+   rationale:'A rice sensory bin provides rich tactile input that helps regulate the nervous system, improves fine motor skills, and encourages imaginative and investigative play.',
+   mats:['Large bin or tray','Uncooked rice (colour-dyed optional)','Scoops, cups, funnels','Small hidden toys or objects','Sheet underneath for easy cleanup'],
+   steps:['Fill bin with 3–4 cups of rice.','Optionally dye portions of rice different colours overnight.','Place small objects buried in the rice.','Invite child to "dig for treasure!"','Provide scoops, cups, and funnels for pouring.','Narrate: "It feels rough! Can you scoop a big pile?"','Encourage finding hidden objects.','Allow 20–30 minutes of free exploration.'],
+   obs:['Tactile comfort vs discomfort with texture','Fine motor skills — scooping, pinching, pouring','Object permanence when looking for hidden items','Language use while playing','Whether child engages in make-believe','Sustained attention and engagement'],
+   eylf:['Outcome 3','Outcome 4']},
+
+  {emoji:'🫙',cat:'sensory',title:'Messy Mud Kitchen',age:'23–30m',
+   rationale:'Mud play offers deep sensory experiences that support brain development, risk-taking, creativity, and scientific thinking through mixing, measuring, and transformation.',
+   mats:['Outdoor space or large tray','Soil or potting mix','Water in jugs','Old pots, pans, spoons','Leaves, flowers, stones','Old aprons or clothes'],
+   steps:['Set up an outdoor "kitchen" with pots and utensils.','Add soil to pots: "Today we\'re cooking mud soup!"','Provide water jugs for children to pour and mix.','Add "ingredients" — leaves, stones, petals.','Narrate: "Stir it well! What are you making?"','Encourage talking about what they\'re "cooking".','Let children pour, mix, and serve freely.','Hose down together at the end!'],
+   obs:['Sensory comfort with messy materials','Imaginative play and narration','Scientific thinking — watching material change','Pouring accuracy and control','Vocabulary for cooking concepts','Collaborative play with peers'],
+   eylf:['Outcome 2','Outcome 4']},
+
+  {emoji:'🫧',cat:'sensory',title:'Shaving Foam Sensory Tray',age:'23–30m',
+   rationale:'Shaving foam provides a unique sensory experience that calms children while promoting mark-making, pre-writing patterns, and bilateral hand exploration.',
+   mats:['Non-scented shaving foam (or whipped cream)','Large baking tray','Drop of food colouring (optional)','Plastic tools: combs, forks, sticks','Towels for cleanup'],
+   steps:['Spray foam onto tray in a thick layer.','Invite child to touch it: "What does it feel like?"','Let them spread and squish freely.','Add a drop of colour and watch it mix.','Show how to draw lines or patterns in the foam.','Try writing their name with a finger.','Hide small objects in the foam to find.','Cleanup is part of the fun — wipe hands on towel!'],
+   obs:['Initial sensory reaction — comfort or reluctance','Progression of engagement over time','Mark-making patterns emerging','Bilateral coordination using both hands','Cause-and-effect as colour spreads','Vocabulary describing texture: fluffy, cold, soft'],
+   eylf:['Outcome 3','Outcome 5']},
+
+  // CREATIVE
+  {emoji:'🎨',cat:'creative',title:'Finger Painting',age:'23–30m',
+   rationale:'Finger painting supports fine motor development, sensory processing, and early mark-making — a precursor to writing. It encourages creativity and self-expression without rules.',
+   mats:['Non-toxic washable finger paints','Large white butcher paper','Smocks/old shirts','Wet wipes & paper towels','Tape to secure paper'],
+   steps:['Cover table and secure paper with tape.','Put smocks on all children.','Place small blobs of 2–3 colours on the paper.','Demonstrate: dip a finger and make marks.','Say "Use your fingers — press, swipe, make dots!"','Let children explore freely.','Introduce a fresh sheet mid-session if needed.','Discuss: "Tell me about what you made!"'],
+   obs:['Whole-hand vs single finger use','Colour mixing curiosity','Naming colours spontaneously','Facial expressions — engagement or discomfort','Emerging mark-making patterns','Willingness to touch and explore texture'],
+   eylf:['Outcome 4','Outcome 5']},
+
+  {emoji:'✏️',cat:'creative',title:'Crayon & Chalk Drawing',age:'23–30m',
+   rationale:'Drawing develops tripod grip, wrist strength, visual-motor integration, and early mark-making — all prerequisites for writing development.',
+   mats:['Chunky triangular crayons','Large paper (A3)','Outdoor chalk + concrete','Chalkboard (optional)','Washi tape shapes on paper (optional)'],
+   steps:['Place a large sheet on the floor or table.','Offer 3–4 chunky crayons — not too many.','Demonstrate making marks: "I\'m drawing a zigzag!"','Invite child to draw freely.','Try chalk outdoors on the concrete.','Draw simple outlines for children to colour in.','Ask: "What did you draw? Tell me about it!"','Display artwork with child\'s name.'],
+   obs:['Tripod vs fist grip development','Dominant hand emergence','Pressure control — light vs heavy marks','Intentional shapes emerging','Language describing artwork','Pride in finished creation'],
+   eylf:['Outcome 4','Outcome 5']},
+
+  {emoji:'📰',cat:'creative',title:'Paper Tearing & Collage',age:'23–30m',
+   rationale:'Tearing paper strengthens hand muscles, develops bilateral coordination, and sticking creates early spatial and compositional thinking — all done safely without scissors.',
+   mats:['Coloured/textured paper','Old magazines and catalogues','PVA glue diluted + brush','Large backing paper','Trays for paper scraps'],
+   steps:['Provide strips of coloured paper and invite tearing.','Demonstrate: hold with two hands and pull apart.','Let children freely tear for 5 minutes — enjoy it!','Provide backing sheet and glue brush.','Show how to glue torn pieces onto paper.','Layer pieces, overlap, fill the page.','Allow to dry and display with child\'s name.'],
+   obs:['Bilateral coordination — holding and pulling','Grip strength in fingers','Intentional vs random placement','Covering the composition space','Sensory response to different textures','Creative decision-making and self-direction'],
+   eylf:['Outcome 4','Outcome 5']},
+
+  {emoji:'🖼️',cat:'creative',title:'Nature Print Stamping',age:'23–30m',
+   rationale:'Using natural objects as stamps introduces texture printing, cause-and-effect, and connects art to the natural world — supporting both creativity and nature appreciation.',
+   mats:['Leaves, flowers, bark pieces, shells','Washable paint in trays','Large paper','Smocks','Baby wipes'],
+   steps:['Collect natural objects from outdoors together.','Set up paint trays with 2–3 colours.','Demonstrate pressing a leaf into paint, then onto paper.','Say "Press it down firmly, then lift it up!"','Let children choose their own objects to stamp.','Encourage trying different colours.','Look at the prints: "Can you see the leaf veins?"','Allow to dry and create a nature gallery.'],
+   obs:['Whether child understands press-and-lift technique','Colour exploration and mixing','Language about textures and shapes seen in prints','Connecting prints to the original natural object','Cause-and-effect: object makes impression in paint','Satisfaction and pride in results'],
+   eylf:['Outcome 2','Outcome 4']},
+
+  {emoji:'🎭',cat:'creative',title:'Self Portrait Drawing',age:'23–30m',
+   rationale:'Drawing self portraits builds self-awareness, body concept, and identity — a key EYLF outcome — while developing drawing skills and vocabulary about body parts.',
+   mats:['Mirrors (unbreakable)','Crayons or markers','White paper A3','Printed face outline template (optional)'],
+   steps:['Position a mirror at child\'s level.','Say "Look at your face! Can you see your eyes? Nose? Mouth?"','Name body parts together in the mirror.','Provide paper and crayons.','Encourage: "Draw what you see — draw YOU!"','Accept all representations — a circle with dots is valid!','Write child\'s name and date on back.','Display portraits at child\'s eye height to celebrate.'],
+   obs:['Self-recognition and body awareness','Which features child includes first','Colour choices for skin, hair, eyes','Grip and mark-making skill','Language about body parts and self','Emotional engagement with their own image'],
+   eylf:['Outcome 1','Outcome 5']},
+
+  // MOTOR
+  {emoji:'🏗️',cat:'motor',title:'Block Stacking Tower',age:'23–30m',
+   rationale:'Stacking blocks develops bilateral hand coordination, spatial reasoning, problem-solving, and understanding of balance, gravity, and cause-and-effect in a playful way.',
+   mats:['Large soft foam blocks','Wooden unit blocks','Duplo bricks','Cardboard boxes','Tape measure for measuring towers'],
+   steps:['Place a variety of blocks on a mat.','Build a small tower (3 blocks) and invite adding more.','Say "Let\'s see how tall we can make it!"','Allow the tower to fall naturally — celebrate the crash!','Rebuild and encourage child to lead.','Challenge: "Can you make it taller than you?"','Measure towers with tape measure.','Try different block types and compare stability.'],
+   obs:['Bilateral hand coordination','Problem-solving when tower wobbles','Reaction to tower falling — frustration or delight?','Whether child rebuilds independently','Spatial awareness — placing blocks centrally','Emerging counting when adding blocks'],
+   eylf:['Outcome 3','Outcome 4']},
+
+  {emoji:'🎵',cat:'motor',title:'Music & Movement Dance',age:'23–30m',
+   rationale:'Music and movement support gross motor development, rhythm awareness, emotional expression, and language development through song and rhyme — core to early childhood.',
+   mats:['Music speaker/phone','Child-friendly music (nursery rhymes)','Scarves or ribbons','Clear open space','Drum or tambourine'],
+   steps:['Clear a safe open space.','Start with "Head Shoulders Knees and Toes".','Model actions first, singing along.','Invite children to join: "Show me how you move!"','Introduce scarves — wave in time with music.','Try fast vs slow music — observe responses.','Use stop-start music to build listening.','Let children take turns "leading" a move.'],
+   obs:['Rhythmic awareness — moving in time with beat','Gross motor coordination','Listening skills during stop-start','Emotional expression through movement','Imitation of adult modelling','Body and spatial awareness'],
+   eylf:['Outcome 3','Outcome 5']},
+
+  {emoji:'🎯',cat:'motor',title:'Ball Rolling & Kicking',age:'23–30m',
+   rationale:'Ball play develops gross motor coordination, spatial awareness, tracking skills, and bilateral motor control — foundational for physical development and sports readiness.',
+   mats:['Various sized soft balls','Foam balls for indoors','Cardboard box goals','Open space','Hoops or markers for targets'],
+   steps:['Sit facing child on floor, legs apart.','Roll a ball to them and encourage rolling back.','Move to standing and try gentle kicking.','Set up a cardboard box goal: "Can you kick it in?"','Vary ball sizes — large foam vs small tennis ball.','Introduce hoops as targets for rolling.','Try rolling down a ramp (plank of wood).','Play "chase the ball" for whole-body movement.'],
+   obs:['Bilateral coordination — using both arms to stop ball','Foot-eye coordination during kicking','Tracking a rolling ball with eyes','Spatial awareness — judging distance','Dominant foot preference emerging','Enthusiasm and persistence when missing'],
+   eylf:['Outcome 3']},
+
+  {emoji:'🧵',cat:'motor',title:'Threading Large Beads',age:'23–30m',
+   rationale:'Threading develops pincer grasp, bilateral hand coordination, hand-eye coordination, and concentration — directly supporting pre-writing and self-care skill development.',
+   mats:['Large wooden or plastic beads','Thick shoelace or stiff cord','Colour pattern cards (optional)','Tray to hold beads','Pipe cleaners as beginner alternative'],
+   steps:['Start with a pipe cleaner — stiffer and easier.','Demonstrate: "Pick up a bead, push it on, pull it through!"','Let child try with verbal support only.','Progress to a thick shoelace.','Introduce colour patterns to follow.','Count beads as they\'re added.','Make a bracelet or necklace to take home.','Increase variety (shapes, sizes) as skill grows.'],
+   obs:['Pincer grasp and finger coordination','Bilateral coordination — holding cord while threading','Eye-hand coordination accuracy','Concentration and persistence','Following a colour sequence pattern','Pride in finished wearable creation'],
+   eylf:['Outcome 3','Outcome 4']},
+
+  {emoji:'🧗',cat:'motor',title:'Obstacle Course Fun',age:'23–30m',
+   rationale:'Obstacle courses build proprioception, gross motor strength, coordination, and problem-solving as children navigate through, over, and around challenges.',
+   mats:['Cushions and pillows','Tunnels (play tunnel or blanket over chairs)','Stepping stones (carpet squares)','Low balance beam (tape on floor)','Hoops to jump in/out of','Timer (optional)'],
+   steps:['Set up a simple 4–5 station course indoors or out.','Walk through the course together first, demonstrating each step.','Say "Crawl through the tunnel, jump in the hoops, balance on the beam!"','Let each child navigate at their own pace.','Cheer them on: "You did it! Around the cushions now!"','Vary the challenge: add or remove elements.','Let children help rearrange the course.','Time it for older or more confident children.'],
+   obs:['Motor planning — understanding what body needs to do','Proprioceptive input through crawling, jumping, balancing','Confidence on unstable surfaces','Following multi-step verbal instructions','Risk-taking and problem-solving','Peer interaction if doing together'],
+   eylf:['Outcome 3']},
+
+  {emoji:'✂️',cat:'motor',title:'Tearing & Scrunching Paper',age:'23–30m',
+   rationale:'Tearing and scrunching strengthens intrinsic hand muscles essential for pencil grip, while providing satisfying sensory feedback and developing bilateral coordination.',
+   mats:['Various paper types: tissue, newspaper, foil','Large tray or sheet underneath','Basket for scrunch-balls','Optional: stick scrunch-balls onto paper as art'],
+   steps:['Offer a stack of different paper types.','Demonstrate scrunching: squeeze paper into a ball.','Encourage them to try: "Make it as small as you can!"','Try tearing — hold with both hands and pull.','Race to see who can fill their basket with scrunch-balls.','Toss scrunch-balls into a laundry basket from a distance.','Alternatively stick them onto paper as textured artwork.'],
+   obs:['Grip strength and endurance','Bilateral coordination in tearing','Satisfaction from the physical sensation','Fine motor control precision','Creativity in using scrunch-balls for play','Attention and engagement duration'],
+   eylf:['Outcome 3','Outcome 4']},
+
+  // COGNITIVE
+  {emoji:'🔵🟡🔴',cat:'cognitive',title:'Colour Sorting Game',age:'23–30m',
+   rationale:'Sorting by colour builds early mathematical thinking, classification skills, and visual discrimination — all foundational for future academic learning.',
+   mats:['Colourful pom-poms or blocks (4 colours)','Coloured bowls matching pom-pom colours','Tongs or spoons (optional)','Tray to contain items'],
+   steps:['Set out 4 coloured bowls on a tray.','Mix pom-poms in a pile in the centre.','Pick up one and say its colour, place in matching bowl.','Invite: "Can you find another red one?"','Encourage without correcting — redirect gently.','Add tongs as a fine motor challenge.','Count the pom-poms in each bowl after sorting.','Mix them up and play again!'],
+   obs:['Colour concept understanding vs visual matching','Speed of recognition — are some colours easier?','Self-correction when noticing a mismatch','Language — naming colours spontaneously','Concentration span on a structured task','Pincer grasp and tool use with tongs'],
+   eylf:['Outcome 4']},
+
+  {emoji:'🧩',cat:'cognitive',title:'Simple Shape Puzzles',age:'23–30m',
+   rationale:'Puzzles develop spatial reasoning, problem-solving, hand-eye coordination, and persistence — while shape sorting builds early mathematical concept understanding.',
+   mats:['3–5 piece wooden puzzles with knobs','Shape sorter toy','Foam shape puzzles','Quiet tabletop space'],
+   steps:['Start with a knob puzzle of 3–4 large pieces.','Remove all pieces and place in front of child.','Hold up one piece: "Where does this one go?"','Encourage child to try — resist solving it for them.','Offer verbal hints not physical help: "Try turning it!"','When complete: "You did it! Let\'s try again!"','Increase to 5-piece puzzle when ready.','Introduce shape sorter as secondary activity.'],
+   obs:['Trial-and-error problem-solving strategy','Frustration tolerance and persistence','Shape recognition — circle, square, triangle','Hand rotation — turning pieces to fit','Self-correction without adult help','Celebrating own success'],
+   eylf:['Outcome 4']},
+
+  {emoji:'🧺',cat:'cognitive',title:'Matching & Sorting Socks',age:'23–30m',
+   rationale:'Practical life activities build early mathematical thinking, independence, concentration, and a sense of real-world contribution — aligned with Montessori principles.',
+   mats:['6–8 pairs of colourful socks','Small tub of soapy water','Drying rack + large pegs','Basket for clean socks'],
+   steps:['Mix all socks in a pile on the floor.','Say: "Can you find the one that matches this?"','Hold up one sock and wait for child to find its pair.','Celebrate each match enthusiastically.','Move to washing: "Let\'s give them a bath!"','Swish socks in soapy water and squeeze.','Help hang socks on a low drying rack.','Revisit later: "They\'re dry now! Let\'s fold them together."'],
+   obs:['Pattern and colour matching ability','One-to-one correspondence understanding','Fine motor strength — squeezing wet fabric','Logical sequencing: wash, wring, hang, dry','Sense of accomplishment in real task','Attention to detail and persistence'],
+   eylf:['Outcome 2','Outcome 4']},
+
+  {emoji:'🏠',cat:'cognitive',title:'Simple Lotto Matching Game',age:'23–30m',
+   rationale:'Picture matching games build visual discrimination, memory, vocabulary, and early literacy concepts in a fun and achievable format for this age group.',
+   mats:['Simple picture lotto cards (animals, food, transport)','Base boards with matching images','Small basket to hold cards'],
+   steps:['Start with a 4-picture lotto board per child.','Shuffle cards and place in a basket.','Pick one card at a time: "Who has the dog?"','Child places card on matching image.','Extend by holding it up: "What IS this? What sound does it make?"','When board is full: "You matched them all!"','Try with new topic boards for variety.'],
+   obs:['Visual discrimination accuracy','Vocabulary — can they name the images?','One-to-one correspondence on the board','Turn-taking in group settings','Attention to detail in selecting correct match','Excitement and engagement with game format'],
+   eylf:['Outcome 4','Outcome 5']},
+
+  {emoji:'📏',cat:'cognitive',title:'Big & Small Sorting',age:'23–30m',
+   rationale:'Comparative size sorting introduces mathematical vocabulary and thinking, including measurement concepts that underpin future numeracy development.',
+   mats:['Pairs of same items in big/small sizes','(big/small cups, stones, toys, shoes)','Two labelled baskets: BIG 🐘 SMALL 🐭','Sorting mat or tray'],
+   steps:['Lay out 8–10 objects in mixed sizes.','Show the two baskets with simple picture labels.','Hold up two matching items side by side: "Which is big? Which is tiny?"','Let child choose and place the items.','Ask: "Is this bigger or smaller than that one?"','Sort yourself occasionally and make a deliberate mistake: "Is that right? What do YOU think?"','Count how many in each basket.'],
+   obs:['Understanding of relative size concept','Vocabulary: big, small, tiny, huge, bigger, smaller','Self-correction when comparing two items','Whether child sorts by other criteria (colour, type)','Confidence in decision-making','Engagement with deliberate teacher mistake'],
+   eylf:['Outcome 4','Outcome 5']},
+
+  // LANGUAGE
+  {emoji:'📖',cat:'language',title:'Story Time with Props',age:'23–30m',
+   rationale:'Shared book reading with physical props builds vocabulary, listening comprehension, narrative understanding, and the love of literacy — directly supporting language milestones.',
+   mats:['Simple picture book (3–5 sentences per page)','Story props (soft toys, puppets, real objects)','Cosy reading corner with cushions','Felt board (optional)'],
+   steps:['Create a cosy nook with cushions.','Introduce book by showing cover: "What do you think this story is about?"','Read slowly, pointing to pictures.','Pause to bring in a prop: "Here\'s the bear just like in our story!"','Ask simple questions: "Where did the bear go?"','Encourage repeating refrains or filling in words.','After reading, act out the story with props.','Place book and props in reading corner to revisit.'],
+   obs:['Vocabulary — do they know object names?','Comprehension — pointing to named characters?','Attention span during group story time','Participation — repeating words, filling blanks','Post-story recall — can they retell a part?','Interest in books independently afterwards'],
+   eylf:['Outcome 5']},
+
+  {emoji:'🪞',cat:'language',title:'Mirror Expression Play',age:'23–30m',
+   rationale:'Mirror play supports self-awareness, emotional recognition, imitation skills, and early social development — all key milestones in toddler development.',
+   mats:['Large unbreakable safety mirror','Puppets or stuffed animals','Face paint dots or stickers','Emotion picture cards','Small hand mirrors'],
+   steps:['Position a large safety mirror at child height.','Sit beside child and look together: "That\'s you!"','Make faces together: happy, sad, surprised, silly.','Name emotions: "You look SO surprised!"','Use puppets in front of mirror.','Play copycat: "Do what I do!" with gestures.','Give small hand mirrors for exploration.','Introduce emotion cards to match to expressions.'],
+   obs:['Self-recognition in mirror','Imitation of adult expressions','Emotional vocabulary development','Delight and engagement with own reflection','Understanding different facial expressions','Peer interaction in small groups'],
+   eylf:['Outcome 1','Outcome 5']},
+
+  {emoji:'🎭',cat:'language',title:'Pretend Play & Role Play',age:'23–30m',
+   rationale:'Imaginative play is the highest form of cognitive activity in early childhood. Role play builds language, social-emotional skills, narrative thinking, and empathy.',
+   mats:['Dress-up box (hats, bags, shoes)','Play kitchen + food props','Baby dolls and prams','Doctor kit or tool set','Cardboard boxes for building'],
+   steps:['Set up a simple scenario: "Let\'s play shops!"','Lay out items naturally.','Join as a character: "I\'d like some apples please!"','Follow the child\'s lead — do not direct.','Model language: "The baby is hungry, what should we feed her?"','Ask character-based questions.','Introduce a "problem": "Oh no, we\'re out of bread!"','Allow play to evolve over 20–30 minutes.'],
+   obs:['Symbolic thinking — using one object to represent another','Vocabulary and sentence length during play','Social negotiation with peers','Narrative sequencing in play','Role switching and flexibility','Emotional expression through characters'],
+   eylf:['Outcome 2','Outcome 4','Outcome 5']},
+
+  {emoji:'🎤',cat:'language',title:'Nursery Rhyme & Song Circle',age:'23–30m',
+   rationale:'Songs and rhymes build phonological awareness, rhythm, vocabulary, memory, and early literacy — while group singing develops confidence and social bonding.',
+   mats:['List of nursery rhymes','Simple instruments (shakers, bells)','Picture cards of songs (optional)','Circle time mat or cushions'],
+   steps:['Gather children in a circle on cushions.','Begin with a familiar rhyme — "Twinkle Twinkle" or "Baa Baa Black Sheep".','Use big gestures and exaggerated expressions.','Pause and let children fill in missing words: "Twinkle twinkle little ___"','Introduce a new simple song each week.','Pass shakers around so everyone has one.','End with a calming song to transition: "This is the way we wash our hands..."','Repeat favourite songs — repetition builds confidence.'],
+   obs:['Phonological awareness — hearing and repeating sounds','Vocabulary recall and word-filling','Rhythmic coordination with instruments','Confidence in joining group singing','Memory — remembering words across sessions','Social engagement in circle format'],
+   eylf:['Outcome 5']},
+
+  {emoji:'🃏',cat:'language',title:'Emotion Cards & Feelings Talk',age:'23–30m',
+   rationale:'Identifying and naming emotions builds emotional literacy, empathy, and self-regulation — critical social-emotional skills that support healthy development.',
+   mats:['Large emotion picture cards (happy, sad, angry, scared, surprised, silly)','Mirror (optional)','Simple emotion story book','Feelings wheel poster'],
+   steps:['Lay out 3–4 emotion cards on the mat.','Point to one: "This person looks happy! Can you show me a happy face?"','Make the face yourself — children will mirror.','Ask: "When do YOU feel happy?"','Show each emotion card and name it clearly.','Use a mirror so they can see their own expressions.','Read a simple feelings story book.','Refer to the cards during the day: "You look frustrated — that\'s okay!"'],
+   obs:['Emotion recognition accuracy','Vocabulary of feeling words','Willingness to express and share feelings','Facial expression imitation','Connecting emotions to personal experiences','Empathy toward others shown in responses'],
+   eylf:['Outcome 1','Outcome 3']},
+
+  // NATURE
+  {emoji:'🪨',cat:'nature',title:'Nature Walk & Collection',age:'23–30m',
+   rationale:'Connecting with nature from early childhood fosters curiosity, vocabulary development, and scientific inquiry. It also supports wellbeing and physical development.',
+   mats:['Small baskets or paper bags','Magnifying glasses (child-sized)','Gloves (optional)','Camera for photos','Nature journal/scrapbook'],
+   steps:['Take children to a garden or park.','Give each child a small basket.','Walk slowly, stopping often to look and listen.','Ask: "What can you see? Hear? Feel?"','Encourage picking up leaves, stones, sticks, seed pods.','Use magnifying glass to examine up close.','Name what you find: "That\'s a gum leaf!"','Return and arrange items on a nature display table.'],
+   obs:['Gross motor on uneven terrain','Vocabulary as new things are named','Curiosity and initiative','Sensory responses to textures','Attention to small details like insects','Social interaction — sharing finds with peers'],
+   eylf:['Outcome 2','Outcome 4']},
+
+  {emoji:'🌱',cat:'nature',title:'Garden Digging & Planting',age:'23–30m',
+   rationale:'Digging in soil provides rich sensory input, develops upper body strength, and introduces children to lifecycles, responsibility, and environmental connection.',
+   mats:['Child-sized trowels and spades','Planter pots or garden bed','Potting mix','Fast-growing seeds (beans, sunflowers)','Watering cans','Labels for plants'],
+   steps:['Fill pots with potting mix — let children help.','Make a hole with finger: "Push your finger in like this!"','Drop in 2–3 seeds per child.','Cover seeds gently with soil.','Water carefully: "Plants need a drink, just like you!"','Label each child\'s pot with their name.','Create a daily watering routine.','Take photos weekly to document growth.'],
+   obs:['Bilateral hand strength for digging','Following multi-step instructions','Patience and delayed gratification','Vocabulary — seed, soil, root, grow, water','Sense of responsibility for their plant','Curiosity about what happens underground'],
+   eylf:['Outcome 2','Outcome 4']},
+
+  {emoji:'🍂',cat:'nature',title:'Leaf Rubbings & Prints',age:'23–30m',
+   rationale:'Leaf rubbings introduce children to scientific observation of plant structures while developing fine motor skills, texture awareness, and creative expression.',
+   mats:['Collection of leaves (various sizes and shapes)','Thin white paper','Unwrapped crayons (side for rubbing)','Tape to hold paper still','Magnifying glass'],
+   steps:['Collect leaves outdoors together first.','Place a leaf vein-side-up under thin paper.','Tape paper edges to hold still.','Demonstrate rubbing crayon sideways over paper: "Look what appears!"','Encourage child to rub firmly all over.','Reveal the leaf underneath: "Magic!"','Create a collection of different leaf prints.','Look with magnifying glass at the vein details.'],
+   obs:['Understanding of cause-and-effect (rubbing creates image)','Grip and pressure control with crayon','Attention to covering the whole leaf shape','Scientific curiosity about vein structures','Vocabulary: veins, stem, edge, smooth, rough','Delight at the "magical" reveal moment'],
+   eylf:['Outcome 2','Outcome 4']},
+
+  // SOCIAL
+  {emoji:'🤝',cat:'social',title:'Turn-Taking Passing Game',age:'23–30m',
+   rationale:'Turn-taking is a critical social skill at this age. Structured games that practise waiting and sharing build self-regulation, empathy, and cooperative play.',
+   mats:['Soft ball or beanbag','Small group of children (2–4)','Visual timer (optional)','"My turn" card (optional)'],
+   steps:['Sit children in a small circle on the mat.','Show the ball: "We\'re going to take turns passing this!"','Pass the ball slowly to the child beside you.','Narrate: "It\'s Maya\'s turn. Now it\'s Liam\'s turn!"','Practice rolling, passing, and tossing at different levels.','If a child struggles to wait: "Your turn is coming — I can see you\'re ready!"','Use a "my turn" card if needed for visual support.','Praise waiting behaviour: "Great waiting, Noah!"'],
+   obs:['Ability to wait for their turn without distress','Impulse control — resisting grabbing ball early','Understanding of the turn-taking sequence','Language: "my turn", "your turn", "wait"','Empathy for peers who are waiting','Increasing confidence in group participation'],
+   eylf:['Outcome 1','Outcome 2']},
+
+  {emoji:'🫂',cat:'social',title:'Cooperative Building Challenge',age:'23–30m',
+   rationale:'Working together on a shared construction develops early cooperation, negotiation, communication, and problem-solving while building motor skills and spatial thinking.',
+   mats:['Large set of blocks or Duplo','Large building mat','Photo cards of simple structures to build (optional)','Camera to document creations'],
+   steps:['Invite 2–3 children to build together.','Say "Let\'s all build one BIG house together!"','Observe interactions without intervening initially.','Model sharing: "Can I have a block? Thank you!"','Narrate collaborative moments: "Priya and Sam built the wall together!"','Introduce a goal: "We need a door — how do we make one?"','Photograph the finished structure.','Celebrate together: "You ALL built that!"'],
+   obs:['Initiation of cooperative play vs parallel play','Verbal communication about the building','Conflict resolution when disagreements arise','Leadership and followship dynamics','Shared problem-solving strategies','Pride in a jointly created outcome'],
+   eylf:['Outcome 2','Outcome 4']},
+];
+
+// ── BUILD CARDS ──
+const grid = document.getElementById('grid');
+activities.forEach((a,i)=>{
+  const card = document.createElement('div');
+  card.className=`act-card g-${a.cat}`;
+  card.dataset.cat=a.cat;
+
+  const matHtml = a.mats.map(m=>`<div class="mat-item">${m}</div>`).join('');
+  const stepHtml = a.steps.map((s,i)=>`<div class="step-item"><div class="step-num">${i+1}</div><div>${s}</div></div>`).join('');
+  const obsHtml = a.obs.map(o=>`<div class="obs-item"><span class="obs-eye">👁</span><div>${o}</div></div>`).join('');
+  const eylfHtml = a.eylf.map(e=>`<span class="eylf-tag">${e}</span>`).join('');
+
+  card.innerHTML=`
+  <div class="card-inner">
+    <div class="card-face card-front" onclick="flipCard(this)">
+      <div class="card-top">
+        <div class="card-emoji-wrap">${a.emoji}</div>
+        <div class="card-cat-chip">${a.cat}</div>
+        <div class="card-name">${a.title}</div>
+        <div class="card-age-tag">👶 ${a.age}</div>
+      </div>
+      <div class="card-body">
+        <div class="card-rationale">${a.rationale}</div>
+        <div class="card-footer">
+          <div class="mat-badge">📦 ${a.mats.length} materials</div>
+          <button class="flip-btn">Details ↺</button>
+        </div>
+      </div>
+    </div>
+    <div class="card-face card-back">
+      <div class="back-header">
+        <div class="back-title">${a.emoji} ${a.title}</div>
+        <div class="back-tabs-row">
+          <button class="btab active" onclick="btab(this,'mat')">📦 Materials</button>
+          <button class="btab" onclick="btab(this,'proc')">📝 Steps</button>
+          <button class="btab" onclick="btab(this,'obs')">👁 Observe</button>
+          <button class="btab" onclick="btab(this,'eylf')">📋 EYLF</button>
+        </div>
+      </div>
+      <div class="back-scroll">
+        <div class="panel active" data-p="mat"><div class="panel-heading">What you need</div>${matHtml}</div>
+        <div class="panel" data-p="proc"><div class="panel-heading">Step by step</div>${stepHtml}</div>
+        <div class="panel" data-p="obs"><div class="panel-heading">What to observe & document</div>${obsHtml}</div>
+        <div class="panel" data-p="eylf"><div class="panel-heading">EYLF learning outcomes</div>${eylfHtml}<div style="margin-top:14px;font-size:0.82rem;color:rgba(255,255,255,0.5);line-height:1.6;">These outcomes align this activity with Australia's Early Years Learning Framework, guiding observation and documentation for portfolios.</div></div>
+      </div>
+      <button class="back-close" onclick="closeCard(this)">↺ Back to overview</button>
+    </div>
+  </div>`;
+  grid.appendChild(card);
+});
+
+function updateCounter(){
+  const visible=document.querySelectorAll('.act-card:not(.hidden)').length;
+  document.getElementById('countNum').textContent=visible;
+}
+updateCounter();
+
+function flipCard(frontEl){frontEl.closest('.act-card').classList.add('flipped');}
+function closeCard(btn){btn.closest('.act-card').classList.remove('flipped');}
+function btab(btn,panel){
+  const back=btn.closest('.card-back');
+  back.querySelectorAll('.btab').forEach(t=>t.classList.remove('active'));
+  back.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  back.querySelector(`[data-p="${panel}"]`).classList.add('active');
+}
+
+let currentView='activities';
+function switchView(view){
+  document.getElementById('activities-view').style.display='none';
+  document.getElementById('eylf-page').classList.remove('show');
+  document.getElementById('dev-page').classList.remove('show');
+  document.getElementById('counter').style.display='none';
+
+  if(view==='activities'){
+    document.getElementById('activities-view').style.display='block';
+    document.getElementById('counter').style.display='block';
+    currentView='activities';
+  } else if(view==='eylf'){
+    document.getElementById('eylf-page').classList.add('show');
+    // Mark EYLF tab active
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelector('.tab[data-cat="eylf"]').classList.add('active');
+  } else if(view==='dev'){
+    document.getElementById('dev-page').classList.add('show');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelector('.tab[data-cat="dev"]').classList.add('active');
+  }
+}
+
+function filter(cat,btn){
+  switchView('activities');
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.act-card').forEach(c=>{
+    if(cat==='all'||c.dataset.cat===cat){c.classList.remove('hidden');}
+    else{c.classList.add('hidden');}
+  });
+  updateCounter();
+}
+</script>
+</body>
+</html>
